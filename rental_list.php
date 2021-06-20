@@ -18,11 +18,10 @@
             <thead >
                 <tr>
                     
-                    <th scope="col">Payment id</th>
-                    <th scope="col">Customer id</th>
-                    <th scope="col">Staff id</th>
                     <th scope="col">Rental id</th>
-                    <th scope="col">Amount</th>
+                    <th scope="col">Reantl Date</th>
+                    <th scope="col">Inventory id</th>
+                    <th scope="col">Staff id</th>
 
 
                 </tr>
@@ -30,17 +29,16 @@
             <?php
             $index = 0;
             $con = new mysqli('localhost', 'root', '', 'sakila');
-            $result = $con->query("select * from payment ");
+            $result = $con->query("select rental.rental_id,rental_date, inventory_id, rental.staff_id from rental left join payment on payment.rental_id=rental.rental_id WHERE rental.rental_id=76");
 
             while ($row = $result->fetch_assoc()) {
             ?>
                 <tr>
 
-                    <td><?= $row["payment_id"]; ?></td>
-                    <td><a href="customer_list.php?cid=<?=($row['customer_id']);?>"><?= $row["customer_id"]; ?></a></td>
-                    <td><a href="staff_list2.php?sid=<?=($row['staff_id']);?>"><?= $row["staff_id"]; ?></a></td>
-                   <td><a href="rental_list.php?rid=<?=($row['rental_id']);?>"><?= $row["rental_id"]; ?></a></td>
-                    <td><?= $row["amount"]; ?></td>
+                    <td><?= $row["rental_id"]; ?></td>
+                    <td><?= $row["rental_date"]; ?></a></td>
+                    <td><?= $row["inventory_id"]; ?></a></td>
+                   <td><?= $row["staff_id"]; ?></a></td>
 
 
                 </tr>
