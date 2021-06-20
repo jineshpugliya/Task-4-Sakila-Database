@@ -37,11 +37,12 @@
             <?php
             $index = 0;
             $con = new mysqli('localhost', 'root', '', 'sakila');
+            $blank=$_GET["id"]??0;
             $result = $con->query("select title,release_year, language.language_id, category.category_id , category.name as 'catname', language.name as 'film language',first_name,rating 
             from actor left join film_actor on film_actor.actor_id=actor.actor_id
             left join film on film_actor.film_id=film.film_id left join language on language.language_id=film.language_id
             left join film_category on film.film_id=film_category.film_id left join category on film_category.category_id=category.category_id
-            WHERE film_actor.actor_id=$_GET[id]");
+            WHERE film_actor.actor_id=$blank");
 
             while ($row = $result->fetch_assoc()) {
             ?>

@@ -28,9 +28,10 @@
             <?php
             $index = 0;
             $con = new mysqli('localhost', 'root', '', 'sakila');
-            $result = $con->query("select customer_id, address.address_id, address, postal_code from address 
+            $blank=$_GET["aid"]??0;
+            $result = $con->query("select customer_id, address.address_id,city_id, address, postal_code from address 
                                 left join customer on address.address_id=customer.address_id 
-                                where address.address_id=$_GET[aid] ");
+                                where address.address_id=$blank ");
 
             while ($row = $result->fetch_assoc()) {
             ?>
@@ -38,9 +39,10 @@
 
                     <td><?= $row["customer_id"]; ?></td>
                     <td><?= $row["address_id"]; ?></td>
-                    <td><?= $row["address"]; ?></td>
+                   <td> <a href="city_list.php?cid=<?=($row["1"]);?>"> <?= $row["address"]; ?></a></td>
+
                     <td><?= $row["postal_code"]; ?></td>
-                    
+                  
 
                 </tr>
             <?php  }

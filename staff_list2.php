@@ -18,33 +18,36 @@
             <thead >
                 <tr>
                     
-                    <th scope="col">Customer id</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Address id</th>
-                    <th scope="col">Store id</th>
-
+                    <th scope="col">Staff id</th>
+                    <th scope="col">First name</th>
+                    <th scope="col">last name</th>
+                    <th scope="col">address id</th>
+                    <th scope="col">email</th>
+                    <th scope="col">store id</th>
+                    <th scope="col">user name</th>
+                  
 
                 </tr>
             </thead>
             <?php
             $index = 0;
             $con = new mysqli('localhost', 'root', '', 'sakila');
-            $blank=$_GET["cid"]??0;
-            $result = $con->query("select distinct(customer.customer_id), first_name, last_name, email, address_id, store_id from customer 
-                                left join payment on customer.customer_id=payment.customer_id
-                                where customer.customer_id=$blank");
+            $blank=$_GET["slid"]??0;
+            $result = $con->query("select DISTINCT(staff.staff_id),staff.first_name, staff.last_name, staff.address_id,staff.email,staff.store_id,staff.username from staff 
+            left join payment on payment.staff_id=staff.staff_id WHERE payment.staff_id=$blank");
 
             while ($row = $result->fetch_assoc()) {
             ?>
                 <tr>
 
-                    <td><?= $row["customer_id"]; ?></td>
-                    <td><?= $row["first_name"]; ?> <?= $row["last_name"]; ?></a></td>
-                    <td><?= $row["email"]; ?></td>
-                    <td><a href="address_list.php?aid=<?=($row['address_id']);?>"><?= $row["address_id"]; ?></td>
-                    <td><a href="store_list.php?sid=<?=($row['store_id']);?>"><?= $row["store_id"]; ?></a></td>
-
+                    <td><?= $row["staff_id"]; ?></td>
+                    <td><?= $row["first_name"]; ?></a></td>
+                    <td><?= $row["last_name"]; ?></a></td>
+                   <td><?= $row["address_id"]; ?></a></td>
+                   <td><?= $row["email"]; ?></td>
+                    <td><?= $row["store_id"]; ?></a></td>
+                    <td><?= $row["username"]; ?></a></td>
+                  
 
                 </tr>
             <?php  }

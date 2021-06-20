@@ -28,10 +28,11 @@
             <?php
             $index = 0;
             $con = new mysqli('localhost', 'root', '', 'sakila');
+            $blank=$_GET["cid"]??0;
             $result = $con->query("select DISTINCT(title),release_year, category.name as 'catname' from film 
                                 left join film_category on film.film_id=film_category.film_id 
                                 left join category on film_category.category_id=category.category_id 
-                                WHERE film_category.category_id=$_GET[cid] ");
+                                WHERE film_category.category_id=$blank ");
 
             while ($row = $result->fetch_assoc()) {
             ?>

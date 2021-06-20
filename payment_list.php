@@ -38,7 +38,7 @@
 
                     <td><?= $row["payment_id"]; ?></td>
                     <td><a href="customer_list.php?cid=<?=($row['customer_id']);?>"><?= $row["customer_id"]; ?></a></td>
-                    <td><a href="staff_list2.php?sid=<?=($row['staff_id']);?>"><?= $row["staff_id"]; ?></a></td>
+                    <td><a href="staff_list2.php?slid=<?=($row['staff_id']);?>"><?= $row["staff_id"]; ?></a></td>
                    <td><a href="rental_list.php?rid=<?=($row['rental_id']);?>"><?= $row["rental_id"]; ?></a></td>
                     <td><?= $row["amount"]; ?></td>
 

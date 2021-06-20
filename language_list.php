@@ -27,8 +27,9 @@
             <?php
             $index = 0;
             $con = new mysqli('localhost', 'root', '', 'sakila');
+            $blank=$_GET["lid"]??0;
             $result = $con->query("select title, language.name as 'film language' from film left join language on 
-            language.language_id=film.language_id where film.language_id=$_GET[lid] ");
+            language.language_id=film.language_id where film.language_id=$blank ");
 
             while ($row = $result->fetch_assoc()) {
             ?>

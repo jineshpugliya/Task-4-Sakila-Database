@@ -27,10 +27,11 @@
             <?php
             $index = 0;
             $con = new mysqli('localhost', 'root', '', 'sakila');
+            $blank=$_GET["sid"]??0;
             $result = $con->query("select first_name, last_name, address, address2, city_id, store.store_id as 'stid' from staff 
             left join address on staff.address_id=address.address_id 
             left JOIN store on staff.store_id=store.store_id
-            where address.address_id=$_GET[sid] || store.store_id=$_GET[sid]");
+            where address.address_id=$blank || store.store_id=$blank");
 
             while ($row = $result->fetch_assoc()) {
             ?>

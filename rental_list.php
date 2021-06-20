@@ -22,6 +22,8 @@
                     <th scope="col">Reantl Date</th>
                     <th scope="col">Inventory id</th>
                     <th scope="col">Staff id</th>
+                    <th scope="col">Customer id</th>
+
 
 
                 </tr>
@@ -29,7 +31,8 @@
             <?php
             $index = 0;
             $con = new mysqli('localhost', 'root', '', 'sakila');
-            $result = $con->query("select rental.rental_id,rental_date, inventory_id, rental.staff_id from rental left join payment on payment.rental_id=rental.rental_id WHERE rental.rental_id=76");
+            $blank=$_GET["rid"]??0;
+            $result = $con->query("select rental.rental_id,rental_date, inventory_id, rental.staff_id,rental.customer_id from rental left join payment on payment.rental_id=rental.rental_id WHERE rental.rental_id=$blank");
 
             while ($row = $result->fetch_assoc()) {
             ?>
@@ -38,7 +41,11 @@
                     <td><?= $row["rental_id"]; ?></td>
                     <td><?= $row["rental_date"]; ?></a></td>
                     <td><?= $row["inventory_id"]; ?></a></td>
-                   <td><?= $row["staff_id"]; ?></a></td>
+                    <td><a href="staff_list2.php?slid=<?=($row['staff_id']);?>"><?= $row["staff_id"]; ?></a></td>
+                    <td><a href="customer_list.php?cid=<?=($row['customer_id']);?>"><?= $row["customer_id"]; ?></a></td>
+
+                   
+
 
 
                 </tr>
