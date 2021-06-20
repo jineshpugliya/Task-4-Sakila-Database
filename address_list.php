@@ -17,24 +17,30 @@
             
             <thead >
                 <tr>
-                    <th scope="col">city id</th>
-                    <th scope="col">city name</th>
+                    
+                    <th scope="col">Customer id</th>
+                    <th scope="col">Address id</th>
+                    <th scope="col">address</th>
+                    <th scope="col">postal code</th>
+
                 </tr>
             </thead>
             <?php
             $index = 0;
             $con = new mysqli('localhost', 'root', '', 'sakila');
-            $result = $con->query("select city.city_id, city from city 
-                                left join address on city.city_id=address.city_id  
-                                where city.city_id=$_GET[cid]");
+            $result = $con->query("select customer_id, address.address_id, address, postal_code from address 
+                                left join customer on address.address_id=customer.address_id 
+                                where address.address_id=$_GET[aid] ");
 
             while ($row = $result->fetch_assoc()) {
             ?>
                 <tr>
 
-                    <td><?= $row["city_id"]; ?></td>
-                    <td><a href="country_list.php?did=<?=($row['city']);?>"><?= $row["city"]; ?></a></td>
-
+                    <td><?= $row["customer_id"]; ?></td>
+                    <td><?= $row["address_id"]; ?></td>
+                    <td><?= $row["address"]; ?></td>
+                    <td><?= $row["postal_code"]; ?></td>
+                    
 
                 </tr>
             <?php  }
@@ -54,3 +60,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   </body>
 </html>
+
+<!-- 
+  -->

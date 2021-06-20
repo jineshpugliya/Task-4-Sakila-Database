@@ -17,23 +17,30 @@
             
             <thead >
                 <tr>
-                    <th scope="col">city id</th>
-                    <th scope="col">city name</th>
+                    
+                    <th scope="col">Payment id</th>
+                    <th scope="col">Customer id</th>
+                    <th scope="col">Staff id</th>
+                    <th scope="col">Rental id</th>
+                    <th scope="col">Amount</th>
+
+
                 </tr>
             </thead>
             <?php
             $index = 0;
             $con = new mysqli('localhost', 'root', '', 'sakila');
-            $result = $con->query("select city.city_id, city from city 
-                                left join address on city.city_id=address.city_id  
-                                where city.city_id=$_GET[cid]");
+            $result = $con->query("select * from payment ");
 
             while ($row = $result->fetch_assoc()) {
             ?>
                 <tr>
 
-                    <td><?= $row["city_id"]; ?></td>
-                    <td><a href="country_list.php?did=<?=($row['city']);?>"><?= $row["city"]; ?></a></td>
+                    <td><?= $row["payment_id"]; ?></td>
+                    <td><a href="customer_list.php?cid=<?=($row['customer_id']);?>"><?= $row["customer_id"]; ?></a></td>
+                    <td><a href="staff_list2.php?sid=<?=($row['staff_id']);?>"><?= $row["staff_id"]; ?></a></td>
+                    <td><?= $row["rental_id"]; ?></td>
+                    <td><?= $row["amount"]; ?></td>
 
 
                 </tr>
@@ -54,3 +61,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   </body>
 </html>
+
+<!-- 
+  -->

@@ -36,7 +36,7 @@
             ?>
                 <tr>
 
-                    <td><?= $row["first_name"]; ?> <?= $row["last_name"]; ?></td>
+                    <td><a href="staff_list.php"><?= $row["first_name"]; ?> <?= $row["last_name"]; ?></a></td>
                     <td><a href="city_list.php?cid=<?=($row['city_id']);?>"><?= $row["address"]; ?></a></td>
                     <td><?= $row["address2"]??"N/A"; ?></td>
                     <td><?= $row["stid"]??"N/A"; ?></td>

@@ -17,23 +17,32 @@
             
             <thead >
                 <tr>
-                    <th scope="col">city id</th>
-                    <th scope="col">city name</th>
+                    
+                    <th scope="col">Customer id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Address id</th>
+                    <th scope="col">Store id</th>
+
+
                 </tr>
             </thead>
             <?php
             $index = 0;
             $con = new mysqli('localhost', 'root', '', 'sakila');
-            $result = $con->query("select city.city_id, city from city 
-                                left join address on city.city_id=address.city_id  
-                                where city.city_id=$_GET[cid]");
+            $result = $con->query("select distinct(customer.customer_id), first_name, last_name, email, address_id, store_id from customer 
+                                left join payment on customer.customer_id=payment.customer_id
+                                where customer.customer_id=$_GET[cid]");
 
             while ($row = $result->fetch_assoc()) {
             ?>
                 <tr>
 
-                    <td><?= $row["city_id"]; ?></td>
-                    <td><a href="country_list.php?did=<?=($row['city']);?>"><?= $row["city"]; ?></a></td>
+                    <td><?= $row["customer_id"]; ?></td>
+                    <td><?= $row["first_name"]; ?> <?= $row["last_name"]; ?></a></td>
+                    <td><?= $row["email"]; ?></td>
+                    <td><a href="address_list.php?aid=<?=($row['address_id']);?>"><?= $row["address_id"]; ?></td>
+                    <td><a href="store_list.php?sid=<?=($row['store_id']);?>"><?= $row["store_id"]; ?></a></td>
 
 
                 </tr>
@@ -54,3 +63,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   </body>
 </html>
+
+<!-- 
+  -->

@@ -17,24 +17,27 @@
             
             <thead >
                 <tr>
-                    <th scope="col">city id</th>
-                    <th scope="col">city name</th>
+                    
+                    <th scope="col">Customer id</th>
+                    <th scope="col">Store id</th>
+                    <th scope="col">Manager Staff id</th>
+
                 </tr>
             </thead>
             <?php
             $index = 0;
             $con = new mysqli('localhost', 'root', '', 'sakila');
-            $result = $con->query("select city.city_id, city from city 
-                                left join address on city.city_id=address.city_id  
-                                where city.city_id=$_GET[cid]");
+            $result = $con->query("select customer_id, store.store_id, manager_staff_id from store 
+                                left join customer on store.store_id=customer.store_id 
+                                where store.store_id=$_GET[sid] ");
 
             while ($row = $result->fetch_assoc()) {
             ?>
                 <tr>
 
-                    <td><?= $row["city_id"]; ?></td>
-                    <td><a href="country_list.php?did=<?=($row['city']);?>"><?= $row["city"]; ?></a></td>
-
+                    <td><?= $row["customer_id"]; ?></td>
+                    <td><?= $row["store_id"]; ?></td>
+                    <td><?= $row["manager_staff_id"]; ?></td>                    
 
                 </tr>
             <?php  }
@@ -54,3 +57,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   </body>
 </html>
+
+<!-- 
+  -->

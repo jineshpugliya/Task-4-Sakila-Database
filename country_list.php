@@ -25,7 +25,9 @@
             <?php
             $index = 0;
             $con = new mysqli('localhost', 'root', '', 'sakila');
-            $result = $con->query("SELECT city.city_id , city.city , country.country FROM city left join country on country.country_id=city.country_id where city.city='$_GET[did]'");
+            $result = $con->query("SELECT city.city_id , city.city , country.country FROM city 
+                                left join country on country.country_id=city.country_id 
+                                where city.city='$_GET[did]'");
 
             while ($row = $result->fetch_assoc()) {
             ?>
