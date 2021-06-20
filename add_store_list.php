@@ -27,7 +27,7 @@
             <?php
             $index = 0;
             $con = new mysqli('localhost', 'root', '', 'sakila');
-            $blank=$_GET["sid"]??0;
+            $blank=$_GET["sid"]??header('Location: staff_list.php');
             $result = $con->query("select first_name, last_name, address, address2, city_id, store.store_id as 'stid' from staff 
             left join address on staff.address_id=address.address_id 
             left JOIN store on staff.store_id=store.store_id

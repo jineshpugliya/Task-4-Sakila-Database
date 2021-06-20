@@ -27,7 +27,7 @@
             <?php
             $index = 0;
             $con = new mysqli('localhost', 'root', '', 'sakila');
-            $blank=$_GET["sid"]??0;
+            $blank=$_GET["sid"]??header('Location: payment_list.php');
             $result = $con->query("select customer_id, store.store_id, manager_staff_id from store 
                                 left join customer on store.store_id=customer.store_id 
                                 where store.store_id=$blank");

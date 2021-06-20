@@ -25,9 +25,10 @@
             <?php
             $index = 0;
             $con = new mysqli('localhost', 'root', '', 'sakila');
+            $blank=$_GET["did"]??header('Location: staff_list.php');
             $result = $con->query("SELECT city.city_id , city.city , country.country FROM city 
                                 left join country on country.country_id=city.country_id 
-                                where city.city='$_GET[did]'");
+                                where city.city='$blank'");
 
             while ($row = $result->fetch_assoc()) {
             ?>

@@ -28,7 +28,7 @@
             <?php
             $index = 0;
             $con = new mysqli('localhost', 'root', '', 'sakila');
-            $blank=$_GET["cid"]??0;
+            $blank=$_GET["cid"]??header('Location: actor_list.php');
             $result = $con->query("select DISTINCT(title),release_year, category.name as 'catname' from film 
                                 left join film_category on film.film_id=film_category.film_id 
                                 left join category on film_category.category_id=category.category_id 

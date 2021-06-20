@@ -28,7 +28,7 @@
             <?php
             $index = 0;
             $con = new mysqli('localhost', 'root', '', 'sakila');
-            $blank=$_GET["aid"]??0;
+            $blank=$_GET["aid"]??header('Location: payment_list.php');
             $result = $con->query("select customer_id, address.address_id,city_id, address, postal_code from address 
                                 left join customer on address.address_id=customer.address_id 
                                 where address.address_id=$blank ");

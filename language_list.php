@@ -27,7 +27,7 @@
             <?php
             $index = 0;
             $con = new mysqli('localhost', 'root', '', 'sakila');
-            $blank=$_GET["lid"]??0;
+            $blank=$_GET["lid"]??header('Location: actor_list.php');
             $result = $con->query("select title, language.name as 'film language' from film left join language on 
             language.language_id=film.language_id where film.language_id=$blank ");
 

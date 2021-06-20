@@ -30,7 +30,7 @@
             <?php
             $index = 0;
             $con = new mysqli('localhost', 'root', '', 'sakila');
-            $blank=$_GET["cid"]??0;
+            $blank=$_GET["cid"]??header('Location: payment_list.php');
             $result = $con->query("select distinct(customer.customer_id), first_name, last_name, email, address_id, store_id from customer 
                                 left join payment on customer.customer_id=payment.customer_id
                                 where customer.customer_id=$blank");

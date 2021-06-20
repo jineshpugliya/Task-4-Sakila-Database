@@ -31,7 +31,7 @@
             <?php
             $index = 0;
             $con = new mysqli('localhost', 'root', '', 'sakila');
-            $blank=$_GET["rid"]??0;
+            $blank=$_GET["rid"]??header('Location: payment_list.php');
             $result = $con->query("select rental.rental_id,rental_date, inventory_id, rental.staff_id,rental.customer_id from rental left join payment on payment.rental_id=rental.rental_id WHERE rental.rental_id=$blank");
 
             while ($row = $result->fetch_assoc()) {

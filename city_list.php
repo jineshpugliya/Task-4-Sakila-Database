@@ -24,7 +24,7 @@
             <?php
             $index = 0;
             $con = new mysqli('localhost', 'root', '', 'sakila');
-            $blank=$_GET["cid"]??0;
+            $blank=$_GET["cid"]??header('Location: staff_list.php');
             $result = $con->query("select city.city_id, city from city 
                                 left join address on city.city_id=address.city_id  
                                 where city.city_id=$blank");

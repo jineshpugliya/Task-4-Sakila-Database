@@ -37,7 +37,8 @@
             <?php
             $index = 0;
             $con = new mysqli('localhost', 'root', '', 'sakila');
-            $blank=$_GET["id"]??0;
+            
+            $blank=$_GET["id"]??header('Location: actor_list.php');
             $result = $con->query("select title,release_year, language.language_id, category.category_id , category.name as 'catname', language.name as 'film language',first_name,rating 
             from actor left join film_actor on film_actor.actor_id=actor.actor_id
             left join film on film_actor.film_id=film.film_id left join language on language.language_id=film.language_id

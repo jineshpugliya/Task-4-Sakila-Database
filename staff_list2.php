@@ -32,7 +32,7 @@
             <?php
             $index = 0;
             $con = new mysqli('localhost', 'root', '', 'sakila');
-            $blank=$_GET["slid"]??0;
+            $blank=$_GET["slid"]??header('Location: payment_list.php');
             $result = $con->query("select DISTINCT(staff.staff_id),staff.first_name, staff.last_name, staff.address_id,staff.email,staff.store_id,staff.username from staff 
             left join payment on payment.staff_id=staff.staff_id WHERE payment.staff_id=$blank");
 
